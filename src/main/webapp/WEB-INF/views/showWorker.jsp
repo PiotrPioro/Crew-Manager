@@ -1,0 +1,437 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Admin szczegóły</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="<c:url value="/vendor/fontawesome-free/css/all.min.css"/>" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="<c:url value="/css/sb-admin-2.css"/>" rel="stylesheet">
+
+</head>
+
+<body id="page-top">
+
+<!-- Page Wrapper -->
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+        <!-- Sidebar - Brand -->
+        <li class="nav-item active">
+            <a class="nav-link">
+                <span>Witaj ${admin.firstName}</span>
+            </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <!-- Nav Item - Dashboard -->
+        <li class="nav-item active">
+            <a class="nav-link" href="/crewManager/logout">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>Wyloguj</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Twoje konto
+        </div>
+
+        <!-- Nav Item - Edit -->
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/editAdmin">
+                <span>Edytuj profil</span>
+            </a>
+        </li>
+
+        <!-- Nav Item - Password -->
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/editPassword">
+                <span>Zmień hasło</span>
+            </a>
+        </li>
+
+        <!-- Nav Item - Show -->
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/showAdmin">
+                <span>Szczegóły profilu</span>
+            </a>
+        </li>
+
+        <!-- Nav Item - Delete -->
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/deleteAdmin">
+                <span>Usuń profil</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Administratorzy
+        </div>
+
+        <!-- Nav Item - addContract -->
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/addAdmin">
+                <span>Dodaj administratora</span>
+            </a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Pracownicy
+        </div>
+
+        <!-- Nav Item - addContract -->
+        <li class="nav-item">
+            <a class="nav-link" href="/worker/addWorker">
+                <span>Dodaj pracownika</span>
+            </a>
+        </li>
+
+        <!-- Nav Item - attendance -->
+        <li class="nav-item">
+            <a class="nav-link" href="/worker/workerList">
+                <span>Lista wszystkich pracowników</span></a>
+        </li>
+
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Kontrakty
+        </div>
+
+        <!-- Nav Item - addContract -->
+        <li class="nav-item">
+            <a class="nav-link" href="/contract/addContract">
+                <span>Dodaj kontrakt</span>
+            </a>
+        </li>
+
+        <!-- Nav Item - attendance -->
+        <li class="nav-item">
+            <a class="nav-link" href="/contract/contractList">
+                <span>Lista wszystkich kontraktów</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider">
+
+        <!-- Nav Item - attendance -->
+        <li class="nav-item">
+            <a class="nav-link" href="/admin/home">
+                <span>Strona główna</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+        <!-- Main Content -->
+        <div id="content">
+
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                <!-- Sidebar Toggle (Topbar) -->
+                <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <!-- Topbar Search -->
+                <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                                <i class="fas fa-search fa-sm"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
+
+                    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                    <li class="nav-item dropdown no-arrow d-sm-none">
+                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <!-- Dropdown - Messages -->
+                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                            <form class="form-inline mr-auto w-100 navbar-search">
+                                <div class="input-group">
+                                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button">
+                                            <i class="fas fa-search fa-sm"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+
+            </nav>
+            <!-- End of Topbar -->
+
+            <!-- Begin Page Content -->
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                    <h1 class="h3 mb-0 text-gray-800">Dane pracownika</h1>
+                </div>
+
+                <!-- Content Row -->
+                <div class="row">
+                    <p class="h3 mb-0 text-gray-800">
+                        Imię: ${worker.firstName} <br>
+                        Nazwisko: ${worker.lastName} <br>
+                    </p>
+                </div>
+                        <c:choose>
+                            <c:when test="${worker.rigging == true}">
+                                <div class="row">
+                                    <p class="h3 mb-0 text-gray-800">
+                                        Rigging:
+                                    </p>
+                                    <p style="color: green" class="h3 mb-0">
+                                         Tak <br>
+                                    </p>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="row">
+                                    <p class="h3 mb-0 text-gray-800">
+                                        Rigging:
+                                    </p>
+                                    <p style="color: red" class="h3 mb-0">
+                                         Nie <br>
+                                    </p>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+
+                        <c:choose>
+                            <c:when test="${worker.construction == true}">
+                                <div class="row">
+                                    <p class="h3 mb-0 text-gray-800">
+                                        Construction:
+                                    </p>
+                                    <p style="color: green" class="h3 mb-0">
+                                        Tak <br>
+                                    </p>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="row">
+                                    <p class="h3 mb-0 text-gray-800">
+                                        Construction:
+                                    </p>
+                                    <p style="color: red" class="h3 mb-0">
+                                        Nie <br>
+                                    </p>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+
+                        <c:choose>
+                            <c:when test="${worker.lighting == true}">
+                                <div class="row">
+                                    <p class="h3 mb-0 text-gray-800">
+                                        Lighting:
+                                    </p>
+                                    <p style="color: green" class="h3 mb-0">
+                                        Tak <br>
+                                    </p>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="row">
+                                    <p class="h3 mb-0 text-gray-800">
+                                        Lighting:
+                                    </p>
+                                    <p style="color: red" class="h3 mb-0">
+                                        Nie <br>
+                                    </p>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+
+                        <c:choose>
+                            <c:when test="${worker.forklift == true}">
+                                <div class="row">
+                                    <p class="h3 mb-0 text-gray-800">
+                                        Forklift:
+                                    </p>
+                                    <p style="color: green" class="h3 mb-0">
+                                        Tak <br>
+                                    </p>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="row">
+                                    <p class="h3 mb-0 text-gray-800">
+                                        Forklift:
+                                    </p>
+                                    <p style="color: red" class="h3 mb-0">
+                                        Nie <br>
+                                    </p>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+
+                        <c:choose>
+                            <c:when test="${worker.cherrypicker == true}">
+                                <div class="row">
+                                    <p class="h3 mb-0 text-gray-800">
+                                        Cherrypicker:
+                                    </p>
+                                    <p style="color: green" class="h3 mb-0">
+                                        Tak <br>
+                                    </p>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="row">
+                                    <p class="h3 mb-0 text-gray-800">
+                                        Cherrypicker:
+                                    </p>
+                                    <p style="color: red" class="h3 mb-0">
+                                        Nie <br>
+                                    </p>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+
+                        <c:choose>
+                            <c:when test="${worker.sound == true}">
+                                <div class="row">
+                                    <p class="h3 mb-0 text-gray-800">
+                                        Sound:
+                                    </p>
+                                    <p style="color: green" class="h3 mb-0">
+                                        Tak <br>
+                                    </p>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="row">
+                                    <p class="h3 mb-0 text-gray-800">
+                                        Sound:
+                                    </p>
+                                    <p style="color: red" class="h3 mb-0">
+                                        Nie <br>
+                                    </p>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+
+                        <c:choose>
+                            <c:when test="${worker.multimedia == true}">
+                                <div class="row">
+                                    <p class="h3 mb-0 text-gray-800">
+                                        Multimedia:
+                                    </p>
+                                    <p style="color: green" class="h3 mb-0">
+                                        Tak <br>
+                                    </p>
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <div class="row">
+                                    <p class="h3 mb-0 text-gray-800">
+                                        Multimedia:
+                                    </p>
+                                    <p style="color: red" class="h3 mb-0">
+                                        Nie <br>
+                                    </p>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
+                </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; Your Website 2019</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+
+
+<!-- Bootstrap core JavaScript-->
+<script src="<c:url value="/vendor/jquery/jquery.min.js"/>"></script>
+<script src="<c:url value="/vendor/bootstrap/js/bootstrap.bundle.min.js"/>"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="<c:url value="/vendor/jquery-easing/jquery.easing.min.js"/>"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="<c:url value="/js/sb-admin-2.min.js"/>"></script>
+
+<!-- Page level plugins -->
+<script src="<c:url value="/vendor/chart.js/Chart.min.js"/>"></script>
+
+<!-- Page level custom scripts -->
+<script src="<c:url value="/js/demo/chart-area-demo.js"/>"></script>
+<script src="<c:url value="/js/demo/chart-pie-demo.js"/>"></script>
+
+</body>
+
+</html>
